@@ -97,9 +97,18 @@
   }
 
   /* ============ ここから紹介ページ（LP） ============ */
-  /* アプリのブランド色。既存の --accent はティール系なので、
-     ピンの配色（マゼンタ→パープル）は別変数で持つ。 */
-  :root{ --brand1:#FF2E93; --brand2:#8A6BFF; }
+  /* アプリのブランド色。既存の --accent はティール系（シアン）なので、
+     アクション色のグラデーションは別変数で持つ。
+     lib/theme/app_theme.dart の AppGradients.action と同じ値。
+
+     ⚠️ 以前はマゼンタ #FF2E93 → パープル #8A6BFF だった。
+     濃色地＋ネオンピンクは出会い系アプリの記号そのもので、
+     App Store の 4.3(b) 判定の材料になった（docs/repositioning.md §2.3）。
+     ピンク・マゼンタ・パープル系に戻さないこと。 */
+  :root{ --brand1:#FF7A2F; --brand2:#FFAC63; }
+  /* 上のグラデーションに乗せる文字色。アプリの NeonButton と同じ。
+     暖色は明度が高く、白文字だとコントラストが 2.6:1 まで落ちる。 */
+  :root{ --on-brand:#3A1E00; }
 
   .lp{ margin:22px 0 40px; scroll-margin-top:80px }
 
@@ -130,7 +139,7 @@
   .btn-soon{
     display:inline-flex; align-items:center; gap:9px;
     background:linear-gradient(135deg, var(--brand1), var(--brand2));
-    color:#fff; font-weight:700; font-size:15px;
+    color:var(--on-brand); font-weight:700; font-size:15px;
     padding:13px 26px; border-radius:999px; border:0;
     box-shadow:0 4px 16px color-mix(in srgb, var(--brand1) 35%, transparent);
     cursor:default;
@@ -190,7 +199,7 @@
   }
   .steps .n{
     flex:none; width:26px; height:26px; border-radius:50%;
-    background:linear-gradient(135deg, var(--brand1), var(--brand2)); color:#fff;
+    background:linear-gradient(135deg, var(--brand1), var(--brand2)); color:var(--on-brand);
     font-size:13px; font-weight:700; display:grid; place-items:center;
   }
   .steps b{ display:block; margin-bottom:2px }
